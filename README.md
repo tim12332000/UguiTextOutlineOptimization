@@ -22,14 +22,16 @@ Text Outline組件 , 實際他就是多畫四個文字在後面 , 偏移量設�
 
 解法：使用Shader做法替換
 -------------------------------------------------------------------------------------------------------------------------
+
 因為vertex消耗太高我們就把這部分放到 Fragment 階段實做。
-使用Shader替換有個要求 DrawCall必須維持 1 
-( 也有兩個 Pass的做法不建議使用。)
+使用Shader替換有個要求 DrawCall必須維持 1 ( 也有兩個 Pass的做法不建議使用。)
 因為DrawCall 上升很大原因是因為 UIText很容易跟其他UI重疊是造成圖片無法Batch。
+
 實際做法 : 
-1.C#端 - 對 Vertex 範圍隨著黑框做放大 ( 讓黑框不會超出框框 )
-2.Shader端 - 傳入 Outline 顏色 + Outline 寬度 &
+1. C#端 - 對 Vertex 範圍隨著黑框做放大 ( 讓黑框不會超出框框 )
+2. Shader端 - 傳入 Outline 顏色 + Outline 寬度 &
 計算 4個方向之後的底圖後再frag階段做疊加。
+
 
 ![image](https://lh3.googleusercontent.com/-06rdtHp7hQpqHMih3v6A7bvM-Us1eR54gBmz8RmOJ-JEr9AfjpuLsRWPzxtF39nRKL7DZ9RhQf_QHyxr8Kb90K_c-07Lt4whlWMEu5j2S9bXKZVjaW8RxUIpmpsChLhUzkYodP6)
 
